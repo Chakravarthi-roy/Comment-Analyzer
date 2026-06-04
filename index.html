@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pulse — Feel Your Audience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-layer"></div>
+  <div class="leaf-deco tl">🍂</div>
+  <div class="leaf-deco br">🍁</div>
+  <div class="leaf-deco tr">🍃</div>
+
+  <div class="app">
+
+    <header>
+      <div class="logo-group">
+        <div class="logo-eyebrow">YouTube Comment Analyzer</div>
+        <div class="logo">pul<em>se</em></div>
+        <div class="logo-tagline">feel the heartbeat of your audience</div>
+      </div>
+      <div class="header-ornament">
+        <div class="orn-dot"></div>
+        <div class="orn-dot"></div>
+        <div class="orn-dot"></div>
+      </div>
+    </header>
+
+    <div class="input-zone">
+  <div class="input-tabs">
+    <button class="tab-btn active" id="tab-url" onclick="switchTab('url')">YouTube URL</button>
+    <button class="tab-btn" id="tab-paste" onclick="switchTab('paste')">Paste Comments</button>
+  </div>
+
+  <!-- URL INPUT -->
+  <div id="url-input-view">
+    <div class="input-label">Video URL</div>
+    <input type="text" id="url-input" placeholder="https://youtube.com/watch?v=..." />
+    <div class="sort-row">
+      <span class="sort-label">Sort by</span>
+      <button class="sort-btn active" id="sort-top" onclick="setSort('relevance')">Top Comments</button>
+      <button class="sort-btn" id="sort-new" onclick="setSort('time')">Newest First</button>
+    </div>
+  </div>
+
+  <!-- PASTE INPUT -->
+  <div id="paste-input-view" style="display:none">
+    <div class="input-label">Comments</div>
+    <textarea id="comments-input" placeholder="Paste comments..."></textarea>
+  </div>
+
+  <div class="input-footer">
+    <button class="analyze-btn" id="analyze-btn">
+      <span id="btn-text">Analyze</span>
+      <span id="btn-icon" class="btn-arrow">→</span>
+    </button>
+  </div>
+</div>
+
+    <div class="error-box" id="error-box"></div>
+
+    <div id="results">
+      <div id="video-info" style="display:none" class="video-info">
+        <div class="video-title" id="video-title"></div>
+        <div class="video-meta" id="video-meta"></div>
+      </div>
+      <!-- SECTION 1: SUMMARY -->
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-label">Summary</div>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <div class="summary-card stagger">
+        <div class="summary-inner">
+          <div class="summary-headline" id="summary-headline"></div>
+          <div class="summary-body" id="summary-body"></div>
+          <div class="summary-tags" id="summary-tags"></div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: EMOTIONS -->
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-label">Emotions</div>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <!-- Single comment: emotion tags -->
+      <div id="emotion-tags-view" class="emotion-tags-wrap"></div>
+
+      <!-- Multiple comments: percentage cards -->
+      <div class="emotion-grid" id="emotion-grid"></div>
+
+      <!-- SECTION 3: UNANSWERED QUESTIONS -->
+      <div id="questions-section">
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">Questions to Reply</div>
+    <div class="section-divider-line"></div>
+  </div>
+  <div class="question-stats" id="question-stats"></div>
+  <div class="q-tabs">
+    <button class="q-tab active" id="tab-all"       onclick="switchQTab('all')">All</button>
+    <button class="q-tab"        id="tab-related"   onclick="switchQTab('related')">Related</button>
+    <button class="q-tab"        id="tab-unrelated" onclick="switchQTab('unrelated')">Unrelated</button>
+    <button class="q-tab"        id="tab-satirical" onclick="switchQTab('satirical')">Satirical</button>
+  </div>
+  <div class="questions-list" id="questions-list"></div>
+</div>
+
+<!-- Dark section — always at bottom, collapsed by default -->
+<div id="dark-section" style="display:none">
+  <div class="dark-toggle" onclick="toggleDark()">
+    <span id="dark-count">Dark Comments</span>
+    <span id="dark-arrow">▼</span>
+  </div>
+  <div id="dark-list" class="dark-list" style="display:none"></div>
+</div>
+
+    </div>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
